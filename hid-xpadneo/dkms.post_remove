@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 ERTM_OVERRIDE="/etc/modprobe.d/99-xpadneo-bluetooth.conf"
 
