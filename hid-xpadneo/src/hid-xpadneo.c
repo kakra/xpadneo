@@ -847,6 +847,8 @@ static int xpadneo_raw_event(struct hid_device *hdev, struct hid_report *report,
 		}
 	}
 
+	//TODO Maybe intercept mouse mode here
+
 	return 0;
 }
 
