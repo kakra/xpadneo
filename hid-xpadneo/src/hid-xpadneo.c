@@ -713,7 +713,10 @@ static u8 *xpadneo_report_fixup(struct hid_device *hdev, u8 *rdesc, unsigned int
 		*rsize -= 1;
 	}
 
-	/* fixup reported axes for Xbox One S */
+	/* fixup reported axes for Xbox One S
+	 * Windows descriptor: X, Y, Rx, Ry, Z,     Rz
+	 * Linux descriptor:   X, Y, Z,  Rz, Brake, Accel
+	 */
 	if (*rsize >= 81) {
 		if (rdesc[34] == 0x09 && rdesc[35] == 0x32) {
 			hid_notice(hdev, "fixing up Rx axis\n");
