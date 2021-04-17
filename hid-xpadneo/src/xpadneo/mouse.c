@@ -42,6 +42,15 @@ extern void xpadneo_mouse_report(struct timer_list *t)
 }
 
 #define rescale_axis(v,d) (((v)<(d)&&(v)>-(d))?0:(32768*((v)>0?(v)-(d):(v)+(d))/(32768-(d))))
+extern int xpadneo_mouse_raw_event(struct xpadneo_devdata *xdata, struct hid_report *report,
+			     u8 *data, int reportsize)
+{
+	if (!xdata->mouse_mode)
+		return 0;
+//todo!
+}
+
+
 extern int xpadneo_mouse_event(struct xpadneo_devdata *xdata, struct hid_usage *usage, __s32 value)
 {
 	if (!xdata->mouse_mode)
