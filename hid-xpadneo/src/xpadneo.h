@@ -190,7 +190,7 @@ extern int xpadneo_init_consumer(struct xpadneo_devdata *);
 extern int xpadneo_init_mouse(struct xpadneo_devdata *);
 extern int xpadneo_init_synthetic(struct xpadneo_devdata *, char *, struct input_dev **);
 extern int xpadneo_mouse_event(struct xpadneo_devdata *, struct hid_usage *, __s32);
-extern int xpadneo_mouse_raw_event(struct xpadneo_devdata *, struct hid_report *, u8 *, int)
+extern int xpadneo_mouse_raw_event(struct xpadneo_devdata *, struct hid_report *, u8 *, int);
 extern void xpadneo_mouse_report(struct timer_list *);
 extern void xpadneo_toggle_mouse(struct xpadneo_devdata *);
 
