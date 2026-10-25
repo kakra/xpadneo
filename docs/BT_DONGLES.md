@@ -179,6 +179,18 @@ If `btmgmt` command is not available, try `bluetoothctl mgmt.info` instead.
   * Used as on-board chip set: ASUS B550-i
 
 
+### MediaTek
+
+* AMD RZ608 Wi-Fi 6E and Bluetooth 5.2 module (NGFF / PCIe)
+  * Chip set: MediaTek MT7921K (rebranded by AMD)
+  * Used as on-board chip set: Gigabyte X570S AORUS ELITE AX, also found in AYANEO handhelds
+  * Performance:
+    * Very good connection, works out of the box, no special configuration required
+  * Tested on:
+    * Pop!_OS 22.04 LTS, Manjaro GNOME
+  * Reported by @deathxxx123 [here](https://github.com/atar-axis/xpadneo/issues/93#issuecomment-1114205181)
+
+
 ### Realtek
 
 Known bad firmware for RTL8761BU chip set is 0xdfc6d922. It causes frequent
