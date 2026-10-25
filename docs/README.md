@@ -240,6 +240,15 @@ This controller uses emulated profile switching support (see below).
 This manufacturer uses random MAC addresses, so we cannot rely on known OUIs. Heuristics try to detect this controller.
 
 
+### GameSir Nova 2 Lite
+
+With the global firmware, this controller uses DInput mode via Bluetooth and identifies with its own vendor ID
+(`3537`), so xpadneo does not handle it. Only the Chinese domestic firmware provides XInput mode via Bluetooth, then it
+identifies as an Xbox controller and xpadneo detects it automatically. Users reported two ways to install the domestic
+firmware: download it from the GameSir Discord server and flash it with Windows, or set the region of an Android device
+to China and update the firmware with the GameSir Connect app.
+
+
 ### A Note About GameSir Devices
 
 GameSir devices do not use officially registered MAC OUIs on the Bluetooth radio part, and they come with various
