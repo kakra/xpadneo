@@ -153,6 +153,54 @@ JustWorksRepairing = confirm
 ```
 
 
+#### Controller Keeps Blinking After Pairing
+
+**Affected models:** Xbox controllers using Bluetooth LE (Xbox Series X\|S or later), mostly with older firmware
+
+Bluez reports the controller as paired and connected, but its LED keeps blinking fast and it sends no input. After
+about 150 seconds, the controller drops the connection and forgets the new key, so every reconnect fails with `PIN or
+Key Missing`. This was reported on Raspberry Pi with the internal adapter, and on desktop systems with USB adapters.
+
+The controller considers the bond incomplete because bluez does not distribute identity information unless LE privacy
+is enabled. Enable it together with the connection parameters from above:
+
+```
+# /etc/bluetooth/main.conf
+[General]
+Privacy = device
+JustWorksRepairing = confirm
+
+[LE]
+MinConnectionInterval = 7
+MaxConnectionInterval = 9
+ConnectionLatency = 0
+ConnectionSupervisionTimeout = 200
+```
+
+Then restart the Bluetooth service, remove the failed pairing (`bluetoothctl remove <MAC>`), and pair and trust the
+controller again. Some users needed `JustWorksRepairing = always` instead. `Privacy = device` may prevent pairing some
+unrelated devices: temporarily remove the line to pair such devices.
+
+If the controller still keeps blinking, add per-device connection parameters to the pairing information while the
+Bluetooth service is stopped, then start it again and connect the controller:
+
+```
+# /var/lib/bluetooth/<ADAPTER_MAC>/<CONTROLLER_MAC>/info
+[ConnectionParameters]
+MinInterval=6
+MaxInterval=6
+Latency=0
+Timeout=300
+```
+
+Pressing the pairing button of the controller wipes its key, and pairing again rewrites this file, so you need to add
+the section again after each new pairing. Updating the controller firmware (see
+[Firmware Update / Flashing Instructions](https://atar-axis.github.io/xpadneo/#firmware-update--flashing-instructions))
+usually makes this work-around unnecessary.
+
+See <https://github.com/atar-axis/xpadneo/issues/449> for the full analysis.
+
+
 #### Xbox Wireless Controller
 
 The newest wireless controllers from Microsoft (Xbox One and Xbox Series X\|S) are known to cause a reconnect loop and
