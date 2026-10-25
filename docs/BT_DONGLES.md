@@ -57,6 +57,22 @@ If `btmgmt` command is not available, try `bluetoothctl mgmt.info` instead.
   * Reported by @ashleyhinton [here](https://github.com/atar-axis/xpadneo/issues/527)
 
 
+### AICSemi
+
+* Pandora 88M80 USB WiFi 6 + Bluetooth adapter (also sold as WIFI6-BW22, BW23, AX900)
+  * Chip set: AIC8800D80 or AIC8800M80
+  * `ID 1111:1111 Pandora International Ltd.` (mass storage mode), `ID a69c:8d81` after mode switching
+  * Needs an out-of-tree driver and a mode switch command, e.g. <https://github.com/olamellberg/AIC8800D80>
+  * Performance:
+    * First controller works
+    * A second controller only works in some games and not in Steam, a third controller does not pair
+    * After a controller reconnects, it no longer works until the system is restarted
+    * Switching to a Realtek adapter fixed the problems
+  * Tested on:
+    * SteamOS 3, Xbox Elite Series 2 controllers
+  * Reported by @YoshiWalsh [here](https://github.com/atar-axis/xpadneo/issues/637)
+
+
 ### Cambridge Silicon Radio
 
 * [Panda Bluetooth 4.0 USB Nano Adapter](https://www.amazon.com/gp/product/B00BCU4TZE/)
