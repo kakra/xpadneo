@@ -191,6 +191,23 @@ $ sudo dmesg | grep 'RTL: fw version'
 Several users reported that switching away from RTL8761BU-based adapters
 resolved frequent disconnect issues entirely.
 
+Other users fixed these reconnects by installing a newer RTL8761BU firmware
+taken from the Windows driver package in the
+[Microsoft Update Catalog](https://catalog.update.microsoft.com/Search.aspx?q=realtek%20bluetooth%205.4),
+see [this guide](https://gist.github.com/peteristhegreat/b48da772167f86f43decbd34edbd0849?permalink_comment_id=5077294#gistcomment-5077294).
+With the new firmware, `hciconfig -a` reports Bluetooth version 5.4 instead of 5.1.
+
+* Edimax BT-8500
+  * Chip set: RTL8761BU
+  * `ID 7392:c611`
+  * Performance:
+    * After the controller has been idle for a minute or more, it reconnects within 20 to 30 seconds after the next
+      button press
+    * Fixed by the firmware from Windows driver version 1.9.1038.3022 (see above), no reconnects for hours
+  * Tested on:
+    * Ubuntu 26.04, kernel 7.0, Xbox Series X|S controller
+  * Reported by @bullit666git [here](https://github.com/atar-axis/xpadneo/issues/629)
+
 * Realtek RTL8852AE (NGFF / PCIe)
   * Chip set: RTL8852AE
   * Performance:
